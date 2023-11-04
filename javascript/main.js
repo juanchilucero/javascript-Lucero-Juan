@@ -1,6 +1,6 @@
 
 
-// Funcion eleccion del jugador
+// funcion eleccion del jugador
 function obtenerEleccionJugador() 
 {
     let eleccion = prompt("Elige: piedra, papel o tijeras").toLowerCase();
@@ -12,7 +12,7 @@ function obtenerEleccionJugador()
     return eleccion;
 }
 
-  // Funcion computadora
+  // funcion computadora
 function obtenerEleccionComputadora() 
 {
     const opciones = ["piedra", "papel", "tijeras"];
@@ -20,7 +20,7 @@ function obtenerEleccionComputadora()
     return opciones[eleccionAleatoria];
 }
 
-  // Funcion resultado
+  // funcion resultado
 function determinarResultado(eleccionJugador, eleccionComputadora) 
 {
     if (eleccionJugador === eleccionComputadora) 
@@ -37,7 +37,7 @@ function determinarResultado(eleccionJugador, eleccionComputadora)
     }
 }
 
-  // Funcion ejecutar juego
+  // funcion ejecutar juego
 function jugarPiedraPapelTijeras() {
     let continuarJugando = true;
 
@@ -59,5 +59,5 @@ function jugarPiedraPapelTijeras() {
 }
 
 
-  // Iniciar funcion juego
+  // iniciar funcion juego
 jugarPiedraPapelTijeras();
