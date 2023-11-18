@@ -1,13 +1,22 @@
+@charset "UTF-8";
 body {
+  background-image: url(/img/97360609-textura-de-semitono-abstracto-con-números-vector-fondo-moderno-para-carteles-sitios-web-páginas.jpg);
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 50px;
+  margin-top: 200px;
 }
-body h1 {
+body div {
+  background-color: white;
+  padding: 15px;
+}
+body div h1 {
   color: #333;
+  font-size: 3rem;
 }
-body p {
+body div p {
   color: #666;
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

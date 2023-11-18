@@ -1,13 +1,21 @@
-const juego = {
-    numeroAleatorio: obtenerNumeroAleatorio(),
-    intentos: 3,
-};
+const obtenerNumeroAleatorio = () => Math.floor(Math.random() * 10) + 1;
 
 const jugador = {
     nombre: prompt("¡Bienvenido! ¿Cual es tu nombre?"),
     intentosRealizados: [],
     puntaje: 0,
 };
+
+if (!jugador.nombre || jugador.nombre.trim() === "") {
+    alert("¡Hasta luego!");
+}else{
+
+
+const juego = {
+    numeroAleatorio: obtenerNumeroAleatorio(),
+    intentos: 3,
+};
+
 
 const validarNumero = numero => !isNaN(numero) && numero >= 1 && numero <= 10;
 
@@ -56,7 +64,7 @@ const reiniciarJuego = () => {
         alert(`Gracias por jugar, ${jugador.nombre}!`);
     }
 };
+jugar()
 
-  const obtenerNumeroAleatorio = () => Math.floor(Math.random() * 10) + 1;
+}
 
-jugar();
