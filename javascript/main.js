@@ -1,63 +1,62 @@
+const juego = {
+    numeroAleatorio: obtenerNumeroAleatorio(),
+    intentos: 3,
+};
 
+const jugador = {
+    nombre: prompt("¡Bienvenido! ¿Cual es tu nombre?"),
+    intentosRealizados: [],
+    puntaje: 0,
+};
 
-// funcion eleccion del jugador
-function obtenerEleccionJugador() 
-{
-    let eleccion = prompt("Elige: piedra, papel o tijeras").toLowerCase();
-    while (eleccion !== "piedra" && eleccion !== "papel" && eleccion !== "tijeras") 
-    {
-        alert("Eleccion no valida. Intentalo de nuevo.");
-        eleccion = prompt("Elige: piedra, papel o tijeras").toLowerCase();
-    }
-    return eleccion;
-}
+const validarNumero = numero => !isNaN(numero) && numero >= 1 && numero <= 10;
 
-  // funcion computadora
-function obtenerEleccionComputadora() 
-{
-    const opciones = ["piedra", "papel", "tijeras"];
-    const eleccionAleatoria = Math.floor(Math.random() * 3);
-    return opciones[eleccionAleatoria];
-}
+const jugar = () => {
+    while (juego.intentos > 0) {
+        let intento = parseInt(prompt(`Hola ${jugador.nombre}, intenta adivinar el numero (entre 1 y 10). Intentos restantes: ${juego.intentos}`));
 
-  // funcion resultado
-function determinarResultado(eleccionJugador, eleccionComputadora) 
-{
-    if (eleccionJugador === eleccionComputadora) 
-    {
-    return "¡Es un empate!";
-    } else if (
-        (eleccionJugador === "piedra" && eleccionComputadora === "tijeras") ||
-        (eleccionJugador === "papel" && eleccionComputadora === "piedra") ||
-        (eleccionJugador === "tijeras" && eleccionComputadora === "papel")
-    ) {
-        return "¡Ganaste!";
-    } else {
-        return "Lo siento, Perdiste. ¡Intentalo de nuevo!";
-    }
-}
+        if (!validarNumero(intento)) {
+            alert("Ingresa un numero valido entre 1 y 10.");
+            continue;
+        }
 
-  // funcion ejecutar juego
-function jugarPiedraPapelTijeras() {
-    let continuarJugando = true;
-
-    while (continuarJugando) {
-        const eleccionJugador = obtenerEleccionJugador();
-        const eleccionComputadora = obtenerEleccionComputadora();
-        const resultado = determinarResultado(eleccionJugador, eleccionComputadora);
-        alert(`Tu eleccion: ${eleccionJugador}\nEleccion de la computadora: ${eleccionComputadora}\n${resultado}`);
-
-        const respuesta = prompt("¿Quieres jugar de nuevo? (Si/No)").toLowerCase();
-
-        if (respuesta === "no") {
-            continuarJugando = false;
-            alert("Gracias por jugar");
-        } else if (respuesta !== "si") {
-            alert("Respuesta no valida. Por favor, ingresa 'Si' o 'No'.");
+        if (intento === juego.numeroAleatorio) {
+            jugador.puntaje++;
+            jugador.intentosRealizados.push(intento);
+            alert(`¡Felicidades, ${jugador.nombre}! ¡Adivinaste el numero!`);
+        break;
+        } else {
+            jugador.intentosRealizados.push(intento);
+            juego.intentos--;
+            alert(`Numero incorrecto. ¡Intenta de nuevo!`);
         }
     }
-}
 
+    if (juego.intentos === 0) {
+        alert(`Se acabaron los intentos, ${jugador.nombre}. El numero era: ${juego.numeroAleatorio}.`);
+    }
 
-  // iniciar funcion juego
-jugarPiedraPapelTijeras();
+    mostrarResultado();
+};
+
+const mostrarResultado = () => {
+    alert(`Fin del juego, ${jugador.nombre}. Puntaje: ${jugador.puntaje}. Intentos realizados: ${jugador.intentosRealizados}`);
+    
+    reiniciarJuego();
+};
+
+const reiniciarJuego = () => {
+    const reiniciar = confirm("¿Quieres jugar de nuevo?");
+    if (reiniciar) {
+        juego.numeroAleatorio = obtenerNumeroAleatorio();
+        juego.intentos = 3;
+        jugador.intentosRealizados = [];
+        jugar();
+    } else {
+        alert(`Gracias por jugar, ${jugador.nombre}!`);
+    }
+};
+
+  const obtenerNumeroAleatorio = () => Math.floor(Math.random() * 10) + 1;
+
+jugar();
